@@ -3,6 +3,9 @@ const app = express();
 const db = require("./utils/database-connection");
 const bodyParser = require("body-parser"); //middleware
 const cors = require("cors");
+const dotenv = require("dotenv").config();
+
+app.use(express.json());
 
 const corsOptions = {
   origin: process.env.FRONTEND_URL || '*', // Default to all origins if FRONTEND_URL is not set
@@ -12,7 +15,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json()); //req.body
 
 // middleware function
